@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class FrontController extends Controller
 {
     function index() : View {
-        $data['brands'] = Brand::take(2)->get();
+        $data['brands'] = Brand::take(8)->get();
         $data['products'] = Product::take(25)->orderBy('id', 'DESC')->get();
         $data['title'] = 'SHOPINVEST - HomePage';
         $data['hero'] = true;
