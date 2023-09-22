@@ -20,3 +20,5 @@ Step8: Migrate the Database: `php artisan migrate`
 Step9: Run db seeder for registering the admin user. `php artisan db:seed`
 
 Step10: Start the Development Server: `php artisan serve`
+
+Note: to login admin panel you can use: `admin@shopinvest.com` and `shopinvest123`
