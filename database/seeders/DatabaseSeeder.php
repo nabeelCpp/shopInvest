@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(UserSeeder::class);
-        $this->call(ProductSeeder::class);
+        $this->call(brandSeeder::class);
+        $this->call(ProductsSeeder::class);
         \App\Models\User::factory()->create([
             'name' => 'ShopInvest Admin',
             'email' => 'admin@shopinvest.com',
