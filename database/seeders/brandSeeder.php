@@ -22,6 +22,6 @@ class brandSeeder extends Seeder
             ['id' => 12,'name' => 'D&G'],
             ['id' => 13,'name' => 'MRF']
         ];
-        \App\Models\Brand::factory()->create($brands);
+        \App\Models\Brand::create($brands);
     }
 }
