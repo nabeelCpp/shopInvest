@@ -14,9 +14,6 @@ class FrontController extends Controller
     function index() : View {
         $data['brands'] = Brand::take(8)->get();
         $data['products'] = Product::take(25)->orderBy('id', 'DESC')->get();
-        echo "<pre>";
-        print_r($data['products']);
-        exit;
         $data['title'] = config('app.name').' - HomePage';
         $data['hero'] = true;
         return view('landing', $data);
