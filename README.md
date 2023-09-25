@@ -1,3 +1,5 @@
+# Requirements : php > 8.0
+
 # shopInvest
 Ecommerce Mini Website
 
