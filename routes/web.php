@@ -19,6 +19,12 @@ Route::get('/', [FrontController::class, 'index'])->name("home");
 
 Route::get('/product/{productId}', [FrontController::class, 'product'])->name("product.details");
 
+/**
+ * Brands per page.
+ */
+Route::get('/{brand}', [FrontController::class, 'brand'])->name("brand");
+
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

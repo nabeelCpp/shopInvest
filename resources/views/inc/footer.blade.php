@@ -1,5 +1,5 @@
  <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; {{ config('app.name') }} 2023</p></div>
         </footer>
 
         {{-- View Cart Modal goes here! --}}

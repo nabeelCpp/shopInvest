@@ -54,7 +54,7 @@ class ProductController extends Controller
                 'min:1', // At least one file must be present
                 'max:4',
             ],
-            'images.*' => 'required|mimes:jpeg,png,gif,bmp,svg',
+            'images.*' => 'required|image',
         ], [
             'price.min' => 'The Product price must be greater than zero.',
             'description.min' => 'The description must be atleast 15 characters long.',
@@ -163,7 +163,7 @@ class ProductController extends Controller
                      'min:1', // At least one file must be present
                      'max:4',
                  ],
-                 'images.*' => 'required|mimes:jpeg,png,gif,bmp,svg',
+                 'images.*' => 'required|image',
              ], [
                 'images.required' => 'Atleast one image file is required. Maximum 4 can be uploaded.',
                 'images.*.mimes' => 'One or more files are not images. Files must be of type jpeg,png,gif,bmp,svg' 

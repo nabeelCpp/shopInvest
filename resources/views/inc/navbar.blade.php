@@ -4,8 +4,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
@@ -17,10 +16,11 @@
                             </ul>
                         </li>
                         @if (isset($brands) && $brands)
-                            @foreach ($brands as $brand)
-                                <li class="nav-item"><a class="nav-link" href="#!">{{ $brand->name }}</a></li>
+                            @foreach ($brands as $b)
+                                <li class="nav-item"><a class="nav-link {{ isset($brand) && $b->name == $brand->name ? 'active' : '' }}" href="{{ route('brand', ['brand' => str_replace(' ', '-', strtolower($b->name))]) }}">{{ $b->name }}</a></li>
                             @endforeach
                         @endif
+                        <li class="nav-item"><a class="nav-link btn btn-info" href="{{ route('login') }}">Login</a></li>
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#addToCartModal" >

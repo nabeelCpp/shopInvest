@@ -16,7 +16,9 @@ const cartBucket = () => {
 }
 
 const populateCartList = (products) => {
+    let total = 0
     let list = products.map(l => {
+        total += l.price * l.qty
         return ` <tr>
                     <td>
                     <img src="${l.img}"  class="rounded img-thumbnail" style="height: 50px; width: 50px;" alt="${l.name}"> ${l.name}</td>
@@ -26,6 +28,9 @@ const populateCartList = (products) => {
                     <td><button type="button" class="btn btn-outline-danger btn-sm"  onclick="removeProductFromCart(${l.id}, this)"><i class="fa fa-trash" title="Delete"></i></button></td> 
                 </tr>`
     }).join(',')
+    if(total) {
+        list += `<tr><td colspan='3'><b>Grand Total</b></td><td><b>$${total.toFixed(2)}</b></td></tr>`
+    }
     $('#productDisplayCart').html(list)
 }
 

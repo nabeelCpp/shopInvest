@@ -40,15 +40,50 @@
                 <h2 class="fw-bolder mb-4">Related products</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach ($related as $p)
+                        {{-- Iterate over images and save data to variable for further use --}}
+                        @php
+                            $carousel = '';
+                            $carouselImages = '';
+                        @endphp
+                        @foreach ($p->images as $key => $image)
+                            @php
+                                $carousel .= "<li data-bs-target='#productCarousel_{$p->id}' data-bs-slide-to='{$key}' class='".($key == 0 ? 'active' :'')."'></li>";
+                                $carouselImages .= "<div class=\"carousel-item ".($key == 0 ? 'active' :'')."\">
+                                            <img src=\"".asset("uploads/products/{$p->id}/{$image->filename}")."\" class=\"d-block w-100\" alt=\"{$image->filename}\">
+                                        </div>";
+                            @endphp
+                        @endforeach
                         <div class="col mb-5">
                             <div class="card h-100">
                                 <!-- Product image-->
-                                <img class="card-img-top" src="{{ asset("uploads/products/{$p->id}/{$p->images[0]->filename}") }}" alt="..." />
+                                <div id="productCarousel_{{ $p->id }}" class="carousel slide" data-bs-ride="carousel">
+                                    <!-- Indicators (Optional) -->
+                                    <ol class="carousel-indicators">
+                                        {!! $carousel !!}
+                                    </ol>
+                                
+                                    <!-- Slides -->
+                                    <div class="carousel-inner">
+                                        {!! $carouselImages !!}
+                                    </div>
+                                
+                                    <!-- Controls (Optional) -->
+                                    @if (count($p->images) > 1)
+                                        <a class="carousel-control-prev" href="#productCarousel_{{ $p->id }}" role="button" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#productCarousel_{{ $p->id }}" role="button" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </a>
+                                    @endif
+                                </div>
                                 <!-- Product details-->
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <!-- Product name-->
-                                        <h5 class="fw-bolder">{{$p->name}}</h5>
+                                        <h5 class="fw-bolder"><a class="btn btn-text" href="{{ route("product.details", ['productId' => $p->id]) }}">{{ $p->name }}</a></h5>
                                         <!-- Product price-->
                                         ${{ $p->price }}
                                     </div>
@@ -68,6 +103,7 @@
 
 @section('js')
     <script>
+        
         const changeImage = (el) => {
             let element = $(el)
             let img = $(element).attr('src')
@@ -117,6 +153,6 @@
                 alert('Quantity must be greater than 0')
             }
         }
-
+        
     </script>
 @endsection
