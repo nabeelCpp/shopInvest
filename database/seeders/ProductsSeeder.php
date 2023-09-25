@@ -180,7 +180,9 @@ class ProductsSeeder extends Seeder
                 'brand_id' => 10
             ]
         ];
-        \App\Models\Product::create($products);
+        foreach ($products as $key => $product) {
+            \App\Models\Product::create($product);
+        }
 
 
         $images = [
@@ -201,7 +203,8 @@ class ProductsSeeder extends Seeder
             ['filename' => '1695625290_2 MRF Genius Players Special.jpg', 'product_id' => 10],
             ['filename' => '1695625699_adidas1.jpg', 'product_id' => 11]
         ];
-
-        \App\Models\Image::create($images);
+        foreach ($images as $key => $image) {
+            \App\Models\Image::create($image);
+        }
     }
 }
