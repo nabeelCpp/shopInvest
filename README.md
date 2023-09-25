@@ -18,9 +18,7 @@ Step7: Configure the Database: Open the .env file and configure the database con
 Step8: Migrate the Database: `php artisan migrate`
 
 Step9: Run db seeder for registering the admin user, brands, products, images. 
-`php artisan db:seed` 
-`php artisan db:seed --class=brandSeeder`
-`php artisan db:seed --class=ProductsSeeder`
+`php artisan db:seed`
 
 Step10: Start the Development Server: `php artisan serve`
 
