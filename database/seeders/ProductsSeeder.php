@@ -180,7 +180,7 @@ class ProductsSeeder extends Seeder
                 'brand_id' => 10
             ]
         ];
-        \App\Models\Product::factory()->create($products);
+        \App\Models\Product::create($products);
 
 
         $images = [
@@ -202,6 +202,6 @@ class ProductsSeeder extends Seeder
             ['filename' => '1695625699_adidas1.jpg', 'product_id' => 11]
         ];
 
-        \App\Models\Image::factory()->create($images);
+        \App\Models\Image::create($images);
     }
 }
