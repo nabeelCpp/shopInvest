@@ -22,6 +22,8 @@ class brandSeeder extends Seeder
             ['id' => 12,'name' => 'D&G'],
             ['id' => 13,'name' => 'MRF']
         ];
-        \App\Models\Brand::create($brands);
+        foreach ($brands as $key => $brand) {
+            \App\Models\Brand::create($brand);
+        }
     }
 }
