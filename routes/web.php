@@ -15,18 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 require __DIR__.'/auth.php';
-
-Route::get('/', [FrontController::class, 'index'])->name("home");
-
-Route::get('/product/{productId}', [FrontController::class, 'product'])->name("product.details");
-/**
- * Brands per page.
- */
-Route::get('/{brand}', [FrontController::class, 'brand'])->name("brand");
-
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -61,6 +50,17 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/images/{id}', [ProductController::class, 'removeImage'])->name('images.remove');
 });
+
+Route::get('/', [FrontController::class, 'index'])->name("home");
+
+Route::get('/product/{productId}', [FrontController::class, 'product'])->name("product.details");
+/**
+ * Brands per page.
+ */
+Route::get('/{brand}', [FrontController::class, 'brand'])->name("brand");
+
+
+
 
 
 
